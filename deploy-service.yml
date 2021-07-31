@@ -3,5 +3,4 @@
   become: True
   tasks:
     - name: deployinggg
-      script: script.sh
-
+      command: kubectl apply -f .
