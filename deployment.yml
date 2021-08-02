@@ -21,7 +21,7 @@ spec:
     spec: 
       containers:
       - name: jenkins0
-        image: javeeds/jankin0:0.8
+        image: javeeds/jenkins0:0.8
         ports:
         - containerPort: 80
         
