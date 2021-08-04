@@ -1,7 +1,7 @@
 pipeline{
     agent any
     tools {
-        maven 'maven3'
+        maven 'maven'
     }
     stages{
         stage('SCM'){
@@ -16,7 +16,7 @@ pipeline{
         }
         stage('Docker Build'){
             steps{
-                sh " docker build . -t javeeds/jenkins0:0.8 "
+                sh " docker build . -t shivap95/webpage:0.6 "
             }
         }
         stage('DockerHub Push'){
@@ -24,13 +24,13 @@ pipeline{
                 withCredentials([usernameColonPassword(credentialsId: 'dockerhub', variable: 'dockerhubcred')]) {
                 // some block
                 }
-                sh "docker push javeeds/jenkins0:0.8"
+                sh "docker push shivap95/webpage:0.6"
             }
         }
         stage('Kubernetes Deploy'){
             steps{
                 sshagent(['masternode']) {
-                    sh 'scp -o StrictHostKeyChecking=no deployment.yml service.yml script.sh ubuntu@172.31.54.67:/home/ubuntu'
+                    sh 'scp -o StrictHostKeyChecking=no deployment.yml service.yml script.sh ubuntu@172.31.2.93:/home/ubuntu'
                 }
                 ansiblePlaybook  credentialsId: 'masternode', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-service.yml'
             }
