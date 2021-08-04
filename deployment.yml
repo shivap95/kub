@@ -3,12 +3,12 @@ kind: Deployment
 metadata:
   name: websitedeployment
   labels:
-    app: jenkins0
+    app: webpage
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: jenkins0
+      app: webpage
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,10 +17,11 @@ spec:
   template: 
     metadata: 
       labels: 
-        app: jenkins0
+        app: webpage
     spec: 
       containers:
-      - name: jenkins0
-        image: javeeds/jenkins0:0.8
-        
+      - name: webpage
+        image: shivap95/webpage:0.6
+        ports:
+        - containerPort: 8080        
         
