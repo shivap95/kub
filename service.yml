@@ -3,13 +3,13 @@ kind: Service
 metadata:
   name: websiteservice
   labels:
-    app: jenkins0
+    app: webpage
 spec:
   selector:
-    app: jenkins0
+    app: webpage
   type: NodePort
   ports:
   - port: 8080
     targetPort: 8080
     nodePort: 31200
-  type: LoadBalancer   
+   
