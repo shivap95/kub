@@ -3,12 +3,12 @@ kind: Deployment
 metadata:
   name: websitedeployment
   labels:
-    app: webpage
+    app: jenkins0
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: webpage
+      app: jenkins0
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,7 +17,7 @@ spec:
   template: 
     metadata: 
       labels: 
-        app: webpage
+        app: jenkins0
     spec: 
       containers:
       - name: webpage
